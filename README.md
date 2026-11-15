@@ -4,7 +4,7 @@ Projeto acadêmico de Banco de Dados que implementa uma Árvore B+ de ordem 4 pa
 
 ## Implementação
 
-Cada nó comporta até três chaves e, nos nós internos, até quatro filhos. Ao receber a quarta chave, o nó é dividido. As siglas ficam ordenadas nas folhas, que possuem uma referência para a próxima folha. Os nós internos guardam as chaves que orientam a navegação.
+Cada nó comporta até três chaves, considerando a ordem 4 adotada neste projeto. Os nós internos comportam até quatro filhos. Ao receber a quarta chave, o nó é dividido. As siglas ficam ordenadas nas folhas, que possuem uma referência para a próxima folha. Os nós internos guardam as chaves que orientam a navegação.
 
 Cada nó é salvo em um arquivo `pagina_<id>.json`, na pasta `paginas_arvore_b`, representando uma página de disco. O JSON contém o indicador de folha (`leaf`), as chaves (`keys`), os identificadores dos filhos (`children`) e a referência para a próxima folha (`next`). A pasta é apagada e recriada a cada execução.
 
@@ -30,6 +30,6 @@ O programa apresenta no terminal:
 
 ## Contagem das operações
 
-Cada carregamento de um arquivo JSON conta como uma leitura, e cada gravação conta como uma escrita. As operações por inserção são calculadas pela diferença dos contadores antes e depois da chamada de inserção, incluindo as divisões de nós e a criação de uma nova raiz quando necessárias.
+Cada carregamento de um arquivo JSON conta como uma leitura, e cada gravação conta como uma escrita. Essa contagem representa chamadas de leitura e gravação dos arquivos JSON, não necessariamente operações físicas individuais do dispositivo de armazenamento. As operações por inserção são calculadas pela diferença dos contadores antes e depois da chamada de inserção, incluindo as divisões de nós e a criação de uma nova raiz quando necessárias.
 
 As capturas dos estados intermediários também leem os arquivos. Essas leituras entram no total que inclui os estados, mas não nas contagens por inserção. Esse total de escritas inclui a criação da página raiz inicial. As leituras da exibição final e da verificação das siglas ficam fora dos totais apresentados. O tempo medido inclui as inserções e as cinco capturas intermediárias, sem incluir a impressão dos resultados nem as verificações finais.
